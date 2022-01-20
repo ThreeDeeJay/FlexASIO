@@ -1,5 +1,7 @@
 # FlexASIO Developer Information
 
+[![.github/workflows/continuous-integration.yml](https://github.com/dechamps/FlexASIO/actions/workflows/continuous-integration.yml/badge.svg)](https://github.com/dechamps/FlexASIO/actions/workflows/continuous-integration.yml)
+
 See `LICENSE.txt` for licensing information. In particular, do note that
 specific license terms apply to the ASIO trademark and ASIO SDK.
 
@@ -21,14 +23,21 @@ automatically at configure time.
 
 ## Packaging
 
-The following command will do a clean superbuild and generate a FlexASIO
-installer package for you:
+The following command will generate the installer package for you:
 
 ```
 cmake -P installer.cmake
 ```
 
-Note that for this command to work, you need to have [Inno Setup][] installed.
+Note that for this command to work:
+
+ -  You need to have [Inno Setup][] installed.
+ -  You need to have built FlexASIO in the `x64-Release` and `x86-Release`
+    Visual Studio configurations first.
+
+**Note:** instead of running `installer.cmake` manually, it is often preferable
+to let the FlexASIO GitHub Actions workflow build the installer, as that
+guarantees a clean build.
 
 ## Troubleshooting
 

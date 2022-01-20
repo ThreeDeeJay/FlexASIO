@@ -40,6 +40,17 @@ target_link_libraries(FlexASIO_config
 	PRIVATE tinytoml
 )
 
+add_library(FlexASIO_control_panel STATIC EXCLUDE_FROM_ALL control_panel.cpp)
+target_link_libraries(FlexASIO_control_panel
+	PRIVATE FlexASIO_log
+	PRIVATE FlexASIOUtil_windows_com
+	PRIVATE FlexASIOUtil_windows_error
+	PRIVATE FlexASIOUtil_windows_registry
+	PRIVATE FlexASIOUtil_windows_string
+	PRIVATE dechamps_CMakeUtils_version
+	PRIVATE dechamps_cpputil::exception
+)
+
 add_library(FlexASIO_log STATIC EXCLUDE_FROM_ALL log.cpp)
 target_link_libraries(FlexASIO_log
 	PUBLIC dechamps_cpplog::log
@@ -50,7 +61,7 @@ target_link_libraries(FlexASIO_log
 add_library(FlexASIO_portaudio STATIC EXCLUDE_FROM_ALL portaudio.cpp)
 target_link_libraries(FlexASIO_portaudio
 	PRIVATE FlexASIOUtil_portaudio
-	PRIVATE portaudio::portaudio
+	PRIVATE PortAudio::PortAudio
 )
 
 add_library(FlexASIO_flexasio STATIC EXCLUDE_FROM_ALL flexasio.cpp)
@@ -60,12 +71,12 @@ target_link_libraries(FlexASIO_flexasio
 	PUBLIC FlexASIO_config
 	PUBLIC FlexASIOUtil_portaudio
 	PRIVATE dechamps_ASIOUtil::asio
+	PRIVATE FlexASIO_control_panel
 	PRIVATE FlexASIO_log
 	PRIVATE dechamps_cpputil::endian
 	PRIVATE dechamps_cpputil::exception
 	PRIVATE dechamps_cpputil::string
-	PRIVATE dechamps_CMakeUtils_version
-	PRIVATE portaudio::portaudio
+	PRIVATE PortAudio::PortAudio
 	PRIVATE winmm
 )
 
